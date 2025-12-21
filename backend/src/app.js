@@ -5,6 +5,9 @@ const { errorHandler } = require('./middleware/error');
 const { success } = require('./utils/responses');
 const { prisma } = require('./db/client');
 
+// Import routes
+const authRoutes = require('./modules/auth/auth.routes');
+
 const app = express();
 
 // CORS configuration
@@ -30,10 +33,8 @@ app.get('/api/health', async (req, res) => {
     }
 });
 
-// API routes will be mounted here
-// app.use('/api/auth', authRoutes);
-// app.use('/api/tenants', tenantRoutes);
-// etc.
+// API routes
+app.use('/api/auth', authRoutes);
 
 // 404 handler
 app.use((req, res) => {
