@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+
+# Node
+node_modules/
+.npmrc
+
+# Build outputs
+dist/
+build/
+.next/
+.out/
+coverage/
+
+# Logs
+*.log
+
+# Env (NOTE: .env must be committed per spec; do not ignore)
+.env.local
+.env.production
+.env.test
