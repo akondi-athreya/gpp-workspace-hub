@@ -13,7 +13,12 @@
     "seed": "node prisma/seed.js",
     "docker:start": "prisma migrate deploy && prisma generate && node prisma/seed.js && node src/server.js"
   },
-  "keywords": ["saas", "multi-tenant", "express", "prisma"],
+  "keywords": [
+    "saas",
+    "multi-tenant",
+    "express",
+    "prisma"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -23,6 +28,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
