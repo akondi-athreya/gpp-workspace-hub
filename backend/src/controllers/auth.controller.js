@@ -1,5 +1,5 @@
-const authService = require('./auth.service');
-const { success, error } = require('../../utils/responses');
+const authModel = require('../models/auth.model');
+const { success, error } = require('../utils/responses');
 
 /**
  * POST /api/auth/register-tenant
@@ -31,7 +31,7 @@ const registerTenant = async (req, res, next) => {
       return error(res, 'Invalid subdomain format. Use lowercase letters, numbers, and hyphens only', 400);
     }
 
-    const result = await authService.registerTenant({
+    const result = await authModel.registerTenant({
       tenantName,
       subdomain,
       adminEmail,
@@ -58,7 +58,7 @@ const login = async (req, res, next) => {
       return error(res, 'Email and password are required', 400);
     }
 
-    const result = await authService.login({
+    const result = await authModel.login({
       email,
       password,
       tenantSubdomain,
@@ -78,7 +78,7 @@ const getCurrentUser = async (req, res, next) => {
   try {
     const userId = req.user.userId;
 
-    const result = await authService.getCurrentUser(userId);
+    const result = await authModel.getCurrentUser(userId);
 
     return success(res, result);
   } catch (err) {
