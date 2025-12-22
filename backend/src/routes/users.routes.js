@@ -10,10 +10,10 @@ const { requireRole } = require('../middleware/rbac');
  * Access: tenant_admin only
  */
 router.post(
-  '/tenants/:tenantId/users',
-  authenticate,
-  requireRole(['tenant_admin']),
-  usersController.addUser
+    '/tenants/:tenantId/users',
+    authenticate,
+    requireRole(['tenant_admin']),
+    usersController.addUser
 );
 
 /**
@@ -22,9 +22,9 @@ router.post(
  * Access: Authenticated users (own tenant) or super_admin
  */
 router.get(
-  '/tenants/:tenantId/users',
-  authenticate,
-  usersController.listUsers
+    '/tenants/:tenantId/users',
+    authenticate,
+    usersController.listUsers
 );
 
 /**
@@ -33,9 +33,9 @@ router.get(
  * Access: tenant_admin or self (limited fields)
  */
 router.put(
-  '/users/:userId',
-  authenticate,
-  usersController.updateUser
+    '/users/:userId',
+    authenticate,
+    usersController.updateUser
 );
 
 /**
@@ -44,10 +44,10 @@ router.put(
  * Access: tenant_admin only
  */
 router.delete(
-  '/users/:userId',
-  authenticate,
-  requireRole(['tenant_admin']),
-  usersController.deleteUser
+    '/users/:userId',
+    authenticate,
+    requireRole(['tenant_admin']),
+    usersController.deleteUser
 );
 
 module.exports = router;

@@ -73,12 +73,12 @@ const updateTenant = async (tenantId, updates, requestingUser) => {
       error.statusCode = 403;
       throw error;
     }
-    
+
     // Only allow name update
     if (updates.name !== undefined) {
       allowedUpdates.name = updates.name;
     }
-    
+
     // Reject if trying to update other fields
     const attemptedFields = Object.keys(updates);
     const restrictedFields = attemptedFields.filter(field => field !== 'name');

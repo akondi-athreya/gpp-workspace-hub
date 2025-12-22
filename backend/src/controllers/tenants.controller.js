@@ -98,7 +98,7 @@ const updateTenant = async (req, res, next) => {
 const listAllTenants = async (req, res, next) => {
   try {
     const requestingUser = req.user; // From auth middleware
-    
+
     // Extract query parameters
     const {
       page,
