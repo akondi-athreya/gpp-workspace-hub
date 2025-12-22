@@ -1,6 +1,6 @@
-const { prisma } = require('../../db/client');
-const { hashPassword, comparePassword } = require('../../utils/crypto');
-const { signToken } = require('../../utils/jwt');
+const { prisma } = require('../db/client');
+const { hashPassword, comparePassword } = require('../utils/crypto');
+const { signToken } = require('../utils/jwt');
 
 /**
  * Register a new tenant with admin user in a transaction
