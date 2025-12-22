@@ -15,18 +15,6 @@ const startServer = async () => {
             console.log(`🌐 CORS enabled for: ${env.frontendUrl}`);
         });
 
-        // Handle port already in use
-        server.on('error', (err) => {
-            if (err.code === 'EADDRINUSE') {
-                console.warn(`⚠️  Port ${env.port} is in use, trying ${env.port + 1}...`);
-                const newPort = env.port + 1;
-                app.listen(newPort, '127.0.0.1', () => {
-                    console.log(`🚀 Server running on port ${newPort} (fallback)`);
-                    console.log(`📝 Environment: ${env.nodeEnv}`);
-                    console.log(`🌐 CORS enabled for: ${env.frontendUrl}`);
-                });
-            }
-        });
     } catch (error) {
         console.error('❌ Failed to start server:', error);
         process.exit(1);
