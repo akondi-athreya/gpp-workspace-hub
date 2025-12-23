@@ -17,6 +17,9 @@ router.post('/', authenticate, projectsController.createProject);
  */
 router.get('/', authenticate, projectsController.listProjects);
 
+// Get single project
+router.get('/:projectId', authenticate, projectsController.getProjectById);
+
 /**
  * PUT /api/projects/:projectId
  * Update project
