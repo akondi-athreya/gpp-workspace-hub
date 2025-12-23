@@ -25,6 +25,14 @@ const getTenantById = async (tenantId, requestingUser) => {
     throw error;
   }
 
+  // Aggregate usage/stats for dashboard
+  const [userCount, projectCount, taskCount, completedTaskCount] = await Promise.all([
+    prisma.user.count({ where: { tenantId } }),
+    prisma.project.count({ where: { tenantId } }),
+    prisma.task.count({ where: { tenantId } }),
+    prisma.task.count({ where: { tenantId, status: 'completed' } }),
+  ]);
+
   return {
     id: tenant.id,
     name: tenant.name,
@@ -33,6 +41,10 @@ const getTenantById = async (tenantId, requestingUser) => {
     subscriptionPlan: tenant.subscriptionPlan,
     maxUsers: tenant.maxUsers,
     maxProjects: tenant.maxProjects,
+    currentUsers: userCount,
+    currentProjects: projectCount,
+    taskCount,
+    completedTaskCount,
     createdAt: tenant.createdAt,
     updatedAt: tenant.updatedAt,
   };
