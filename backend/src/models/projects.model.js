@@ -154,6 +154,69 @@ const listProjects = async (requestingUser, options = {}) => {
     };
 };
 
+// Get single project with tasks and stats
+const getProjectById = async (projectId, requestingUser) => {
+    const project = await prisma.project.findUnique({
+        where: { id: projectId },
+        include: {
+            creator: {
+                select: { id: true, fullName: true },
+            },
+            tasks: {
+                orderBy: { createdAt: 'desc' },
+                include: {
+                    assignee: {
+                        select: { id: true, fullName: true, email: true },
+                    },
+                },
+            },
+        },
+    });
+
+    if (!project) {
+        const error = new Error('Project not found');
+        error.statusCode = 404;
+        throw error;
+    }
+
+    if (project.tenantId !== requestingUser.tenantId) {
+        const error = new Error('Access denied. Project belongs to different tenant');
+        error.statusCode = 403;
+        throw error;
+    }
+
+    const completedTasks = project.tasks.filter(t => t.status === 'completed').length;
+
+    return {
+        id: project.id,
+        tenantId: project.tenantId,
+        name: project.name,
+        description: project.description,
+        status: project.status,
+        createdBy: {
+            id: project.creator.id,
+            fullName: project.creator.fullName,
+        },
+        taskCount: project.tasks.length,
+        completedTaskCount: completedTasks,
+        tasks: project.tasks.map(task => ({
+            id: task.id,
+            title: task.title,
+            description: task.description,
+            status: task.status,
+            priority: task.priority,
+            dueDate: task.dueDate,
+            assignedTo: task.assignee
+                ? { id: task.assignee.id, fullName: task.assignee.fullName, email: task.assignee.email }
+                : null,
+            createdAt: task.createdAt,
+            updatedAt: task.updatedAt,
+        })),
+        createdAt: project.createdAt,
+        updatedAt: project.updatedAt,
+    };
+};
+
 /**
  * Update project (API 14)
  * Authorization: tenant_admin OR project creator
@@ -260,6 +323,7 @@ const deleteProject = async (projectId, requestingUser) => {
 module.exports = {
     createProject,
     listProjects,
+    getProjectById,
     updateProject,
     deleteProject,
 };
