@@ -1,5 +1,6 @@
 const usersModel = require('../models/users.model');
 const { success, error } = require('../utils/responses');
+const { logAudit } = require('../utils/audit');
 
 /**
  * POST /api/tenants/:tenantId/users
@@ -50,6 +51,15 @@ const addUser = async (req, res, next) => {
         };
 
         const user = await usersModel.addUser(tenantId, userData, requestingUser);
+
+        await logAudit({
+            tenantId,
+            userId: requestingUser.userId,
+            action: 'CREATE_USER',
+            entityType: 'user',
+            entityId: user.id,
+            ipAddress: req.ip,
+        });
 
         return success(res, user, 'User created successfully', 201);
     } catch (err) {
@@ -153,6 +163,15 @@ const updateUser = async (req, res, next) => {
 
         const updatedUser = await usersModel.updateUser(userId, updates, requestingUser);
 
+        await logAudit({
+            tenantId: updatedUser.tenantId || requestingUser.tenantId || null,
+            userId: requestingUser.userId,
+            action: 'UPDATE_USER',
+            entityType: 'user',
+            entityId: userId,
+            ipAddress: req.ip,
+        });
+
         return success(res, updatedUser, 'User updated successfully');
     } catch (err) {
         next(err);
@@ -176,6 +195,15 @@ const deleteUser = async (req, res, next) => {
         }
 
         await usersModel.deleteUser(userId, requestingUser);
+
+        await logAudit({
+            tenantId: requestingUser.tenantId,
+            userId: requestingUser.userId,
+            action: 'DELETE_USER',
+            entityType: 'user',
+            entityId: userId,
+            ipAddress: req.ip,
+        });
 
         return success(res, null, 'User deleted successfully');
     } catch (err) {
