@@ -1,5 +1,6 @@
 const projectsModel = require('../models/projects.model');
 const { success, error } = require('../utils/responses');
+const { logAudit } = require('../utils/audit');
 
 /**
  * POST /api/projects
@@ -36,6 +37,15 @@ const createProject = async (req, res, next) => {
         };
 
         const project = await projectsModel.createProject(projectData, requestingUser);
+
+        await logAudit({
+            tenantId: project.tenantId,
+            userId: requestingUser.userId,
+            action: 'CREATE_PROJECT',
+            entityType: 'project',
+            entityId: project.id,
+            ipAddress: req.ip,
+        });
 
         return success(res, project, 'Project created successfully', 201);
     } catch (err) {
@@ -126,6 +136,15 @@ const updateProject = async (req, res, next) => {
 
         const updatedProject = await projectsModel.updateProject(projectId, updates, requestingUser);
 
+        await logAudit({
+            tenantId: updatedProject.tenantId || requestingUser.tenantId,
+            userId: requestingUser.userId,
+            action: 'UPDATE_PROJECT',
+            entityType: 'project',
+            entityId: projectId,
+            ipAddress: req.ip,
+        });
+
         return success(res, updatedProject, 'Project updated successfully');
     } catch (err) {
         next(err);
@@ -150,7 +169,36 @@ const deleteProject = async (req, res, next) => {
 
         await projectsModel.deleteProject(projectId, requestingUser);
 
+        await logAudit({
+            tenantId: requestingUser.tenantId,
+            userId: requestingUser.userId,
+            action: 'DELETE_PROJECT',
+            entityType: 'project',
+            entityId: projectId,
+            ipAddress: req.ip,
+        });
+
         return success(res, null, 'Project deleted successfully');
+    } catch (err) {
+        next(err);
+    }
+};
+
+// GET /api/projects/:projectId
+const getProjectById = async (req, res, next) => {
+    try {
+        const { projectId } = req.params;
+        const requestingUser = req.user;
+
+        // Validate projectId format (UUID)
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        if (!uuidRegex.test(projectId)) {
+            return error(res, 'Invalid project ID format', 400);
+        }
+
+        const project = await projectsModel.getProjectById(projectId, requestingUser);
+
+        return success(res, project);
     } catch (err) {
         next(err);
     }
@@ -161,4 +209,5 @@ module.exports = {
     listProjects,
     updateProject,
     deleteProject,
+    getProjectById,
 };
