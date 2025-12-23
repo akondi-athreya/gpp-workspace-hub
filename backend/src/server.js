@@ -8,8 +8,8 @@ const startServer = async () => {
         await prisma.$connect();
         console.log('✅ Database connected');
 
-        // Start server
-        const server = app.listen(env.port, '127.0.0.1', () => {
+        // Start server (bind to 0.0.0.0 for Docker compatibility)
+        const server = app.listen(env.port, '0.0.0.0', () => {
             console.log(`🚀 Server running on port ${env.port}`);
             console.log(`📝 Environment: ${env.nodeEnv}`);
             console.log(`🌐 CORS enabled for: ${env.frontendUrl}`);
