@@ -1,5 +1,6 @@
 const authModel = require('../models/auth.model');
 const { success, error } = require('../utils/responses');
+const { logAudit } = require('../utils/audit');
 
 /**
  * POST /api/auth/register-tenant
@@ -39,6 +40,14 @@ const registerTenant = async (req, res, next) => {
       adminFullName,
     });
 
+    await logAudit({
+      tenantId: result.tenantId,
+      userId: result.adminUser.id,
+      action: 'REGISTER_TENANT',
+      entityType: 'tenant',
+      entityId: result.tenantId,
+    });
+
     return success(res, result, 'Tenant registered successfully', 201);
   } catch (err) {
     next(err);
@@ -62,6 +71,15 @@ const login = async (req, res, next) => {
       email,
       password,
       tenantSubdomain,
+    });
+
+    await logAudit({
+      tenantId: result.user.tenantId,
+      userId: result.user.id,
+      action: 'LOGIN_SUCCESS',
+      entityType: 'user',
+      entityId: result.user.id,
+      ipAddress: req.ip,
     });
 
     return success(res, result);
@@ -94,6 +112,16 @@ const logout = async (req, res, next) => {
   try {
     // For JWT-only auth, logout is handled client-side
     // Optionally log the action in audit logs here
+    if (req.user) {
+      await logAudit({
+        tenantId: req.user.tenantId,
+        userId: req.user.userId,
+        action: 'LOGOUT',
+        entityType: 'user',
+        entityId: req.user.userId,
+        ipAddress: req.ip,
+      });
+    }
     return success(res, null, 'Logged out successfully');
   } catch (err) {
     next(err);
