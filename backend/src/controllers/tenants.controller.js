@@ -1,5 +1,6 @@
 const tenantsModel = require('../models/tenants.model');
 const { success, error } = require('../utils/responses');
+const { logAudit } = require('../utils/audit');
 
 /**
  * GET /api/tenants/:tenantId
@@ -83,6 +84,15 @@ const updateTenant = async (req, res, next) => {
     }
 
     const updatedTenant = await tenantsModel.updateTenant(tenantId, updates, requestingUser);
+
+    await logAudit({
+      tenantId,
+      userId: requestingUser.userId,
+      action: 'UPDATE_TENANT',
+      entityType: 'tenant',
+      entityId: tenantId,
+      ipAddress: req.ip,
+    });
 
     return success(res, updatedTenant, 'Tenant updated successfully');
   } catch (err) {
