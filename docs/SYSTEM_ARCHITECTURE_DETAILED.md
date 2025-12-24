@@ -3,14 +3,25 @@
 Comprehensive architectural documentation of the Workspace Hub multi-tenant SaaS platform.
 
 ## Table of Contents
-- [System Overview](#system-overview)
-- [Layered Architecture](#layered-architecture)
-- [Request Flow](#request-flow)
-- [Multi-Tenancy Architecture](#multi-tenancy-architecture)
-- [Authentication & Authorization](#authentication--authorization)
-- [Subscription Limits Enforcement](#subscription-limits-enforcement)
-- [Deployment Architecture](#deployment-architecture)
-- [Security Architecture](#security-architecture)
+- [System Architecture - Detailed Documentation](#system-architecture---detailed-documentation)
+  - [Table of Contents](#table-of-contents)
+  - [System Overview](#system-overview)
+    - [Key Characteristics](#key-characteristics)
+  - [Layered Architecture](#layered-architecture)
+  - [Request Flow Example: Creating a Task](#request-flow-example-creating-a-task)
+  - [Multi-Tenancy Architecture](#multi-tenancy-architecture)
+    - [Data Isolation Strategy](#data-isolation-strategy)
+    - [Multi-Tenancy Verification Checklist](#multi-tenancy-verification-checklist)
+  - [Authentication \& Authorization](#authentication--authorization)
+    - [JWT Authentication Flow](#jwt-authentication-flow)
+    - [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
+  - [Subscription Limits Enforcement](#subscription-limits-enforcement)
+    - [Limit Checking Points](#limit-checking-points)
+  - [Deployment Architecture](#deployment-architecture)
+    - [Docker Compose Services](#docker-compose-services)
+  - [Security Architecture](#security-architecture)
+    - [Defense Layers](#defense-layers)
+    - [Security Checklist](#security-checklist)
 
 ---
 
