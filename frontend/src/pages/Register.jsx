@@ -58,16 +58,14 @@ export default function Register() {
     };
 
     return (
-        <div className="card narrow" style={{ boxShadow: '0 20px 60px rgba(102, 126, 234, 0.3)' }}>
+        <div className="card narrow" style={{ boxShadow: '0 20px 60px rgba(37, 99, 235, 0.15)' }}>
             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <h2 style={{ fontSize: '2rem', marginBottom: '8px', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Create Workspace</h2>
-                <p style={{ color: '#718096', fontSize: '0.95rem' }}>Set up your organization's workspace</p>
+                <h2 style={{ fontSize: '2rem', marginBottom: '8px', color: '#1f2937' }}>Create Workspace</h2>
+                <p style={{ color: '#6b7280', fontSize: '0.95rem' }}>Set up your organization's workspace</p>
             </div>
             <form onSubmit={handleSubmit} className="form">
                 <label>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>🏢</span> Organization Name
-                    </span>
+                    Organization Name
                     <input name="tenantName" value={form.tenantName} onChange={onChange} placeholder="Acme Corp" required />
                 </label>
                 <label>Subdomain
@@ -75,21 +73,16 @@ export default function Register() {
                     {form.subdomain && <small style={{ color: '#666', fontSize: '0.85em', marginTop: '4px', display: 'block' }}>Your URL: {form.subdomain}.workspacehub.com</small>}
                 </label>
                 <label>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>👤</span> Admin Full Name
-                    </span>
+                                color: '#2563eb', 
                     <input name="adminFullName" value={form.adminFullName} onChange={onChange} placeholder="John Doe" required />
-                </label>
-                <label>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>📧</span> Admin Email
-                    </span>
+                                fontSize: '1.1em',
+                                padding: '4px 8px',
+                                fontWeight: '600'
+                    Admin Email
                     <input type="email" name="adminEmail" value={form.adminEmail} onChange={onChange} placeholder="admin@acme.com" required />
-                </label>
+                            {showConfirmPassword ? 'Hide' : 'Show'}
                 <label>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>🔒</span> Password (min 8 characters)
-                    </span>
+                    Password (min 8 characters)
                     <div style={{ position: 'relative' }}>
                         <input 
                             type={showPassword ? 'text' : 'password'} 
@@ -110,20 +103,19 @@ export default function Register() {
                                 transform: 'translateY(-50%)', 
                                 background: 'transparent', 
                                 border: 'none', 
-                                color: '#667eea', 
+                                color: '#2563eb', 
                                 cursor: 'pointer',
-                                fontSize: '1.2em',
-                                padding: '4px 8px'
+                                fontSize: '1.1em',
+                                padding: '4px 8px',
+                                fontWeight: '600'
                             }}
                         >
-                            {showPassword ? '🙈' : '👁️'}
+                            {showPassword ? 'Hide' : 'Show'}
                         </button>
                     </div>
                 </label>
                 <label>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span>🔒</span> Confirm Password
-                    </span>
+                    Confirm Password
                     <div style={{ position: 'relative' }}>
                         <input 
                             type={showConfirmPassword ? 'text' : 'password'} 
@@ -168,8 +160,8 @@ export default function Register() {
                 {success && <div className="success">{success}</div>}
                 <button type="submit" disabled={loading}>{loading ? 'Registering...' : 'Register'}</button>
             </form>
-            <div style={{ textAlign: 'center', marginTop: '24px', paddingTop: '24px', borderTop: '1px solid #e2e8f0' }}>
-                <p style={{ color: '#718096' }}>Already have an account? <Link to="/login" style={{ fontWeight: '600', color: '#667eea' }}>Login</Link></p>
+            <div style={{ textAlign: 'center', marginTop: '24px', paddingTop: '24px', borderTop: '1px solid #e5e7eb' }}>
+                <p style={{ color: '#6b7280' }}>Already have an account? <Link to="/login" style={{ fontWeight: '600', color: '#2563eb' }}>Login</Link></p>
             </div>
         </div>
     );

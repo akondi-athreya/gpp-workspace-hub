@@ -70,8 +70,8 @@ export default function Dashboard() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div style={{ marginBottom: '8px' }}>
-                <h1 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', color: '#2d3748' }}>Dashboard</h1>
-                <p style={{ margin: 0, color: '#718096', fontSize: '1.1rem' }}>Welcome back, {user?.fullName}! Here's your workspace overview.</p>
+                <h1 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', color: '#1f2937' }}>Dashboard</h1>
+                <p style={{ margin: 0, color: '#6b7280', fontSize: '1.1rem' }}>Welcome back, {user?.fullName}! Here's your workspace overview.</p>
             </div>
             
             {/* Statistics Cards */}
@@ -79,44 +79,44 @@ export default function Dashboard() {
                 <div className="card" style={{ 
                     textAlign: 'center', 
                     padding: '28px 20px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: '#2563eb',
                     color: 'white',
                     border: 'none'
                 }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>📁</div>
+                    
                     <h2 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', fontWeight: '700' }}>{stats.totalProjects}</h2>
                     <p style={{ margin: 0, opacity: 0.9, fontSize: '1rem' }}>Total Projects</p>
                 </div>
                 <div className="card" style={{ 
                     textAlign: 'center', 
                     padding: '28px 20px',
-                    background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    background: '#dc2626',
                     color: 'white',
                     border: 'none'
                 }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>✅</div>
+                    
                     <h2 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', fontWeight: '700' }}>{stats.totalTasks}</h2>
                     <p style={{ margin: 0, opacity: 0.9, fontSize: '1rem' }}>Total Tasks</p>
                 </div>
                 <div className="card" style={{ 
                     textAlign: 'center', 
                     padding: '28px 20px',
-                    background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    background: '#059669',
                     color: 'white',
                     border: 'none'
                 }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>✨</div>
+                    
                     <h2 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', fontWeight: '700' }}>{stats.completedTasks}</h2>
                     <p style={{ margin: 0, opacity: 0.9, fontSize: '1rem' }}>Completed Tasks</p>
                 </div>
                 <div className="card" style={{ 
                     textAlign: 'center', 
                     padding: '28px 20px',
-                    background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                    background: '#ea580c',
                     color: 'white',
                     border: 'none'
                 }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '8px' }}>⏳</div>
+                    
                     <h2 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', fontWeight: '700' }}>{stats.pendingTasks}</h2>
                     <p style={{ margin: 0, opacity: 0.9, fontSize: '1rem' }}>Pending Tasks</p>
                 </div>
@@ -126,7 +126,7 @@ export default function Dashboard() {
             <div className="grid">
                 <div className="card">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.4rem', color: '#2d3748' }}>📁 Recent Projects</h3>
+                        <h3 style={{ margin: 0, fontSize: '1.4rem', color: '#1f2937' }}>Recent Projects</h3>
                         <Link to="/projects" className="link" style={{ fontSize: '0.9rem' }}>View All →</Link>
                     </div>
                     <ul className="list">
@@ -143,7 +143,7 @@ export default function Dashboard() {
                 </div>
                 <div className="card">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.4rem', color: '#2d3748' }}>✅ My Tasks</h3>
+                        <h3 style={{ margin: 0, fontSize: '1.4rem', color: '#1f2937' }}>My Tasks</h3>
                         <select 
                             value={taskFilter} 
                             onChange={(e) => setTaskFilter(e.target.value)} 

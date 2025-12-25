@@ -105,8 +105,8 @@ export default function Projects() {
     return (
         <>
             <div style={{ marginBottom: '24px' }}>
-                <h1 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', color: '#2d3748' }}>Projects</h1>
-                <p style={{ margin: 0, color: '#718096', fontSize: '1.1rem' }}>Manage all your workspace projects</p>
+                    <h1 style={{ margin: '0 0 8px 0', fontSize: '2.5rem', color: '#1f2937' }}>Projects</h1>
+                    <p style={{ margin: 0, color: '#6b7280', fontSize: '1.1rem' }}>Manage all your workspace projects</p>
             </div>
             <div className="card">
             <div className="card-head">
@@ -115,24 +115,24 @@ export default function Projects() {
                     onClick={() => setShowCreateForm(!showCreateForm)}
                     style={{ 
                         padding: '10px 20px', 
-                        background: showCreateForm ? '#cbd5e0' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+                            background: showCreateForm ? '#cbd5e0' : '#2563eb', 
                         color: 'white', 
                         border: 'none', 
                         borderRadius: '10px', 
                         cursor: 'pointer',
                         fontWeight: '600',
-                        boxShadow: showCreateForm ? 'none' : '0 4px 12px rgba(102, 126, 234, 0.4)',
+                            boxShadow: showCreateForm ? 'none' : '0 4px 12px rgba(37, 99, 235, 0.3)',
                         transition: 'all 0.3s ease'
                     }}
                 >
-                    {showCreateForm ? '❌ Cancel' : '➕ New Project'}
+                        {showCreateForm ? 'Cancel' : 'New Project'}
                 </button>
             </div>
             
             <div style={{ display: 'flex', gap: '12px', marginBottom: '20px', flexWrap: 'wrap' }}>
                 <input 
                     type="text" 
-                    placeholder="🔍 Search by project name..." 
+                        placeholder="Search by project name..." 
                     value={searchTerm} 
                     onChange={(e) => setSearchTerm(e.target.value)}
                     style={{ 
@@ -166,14 +166,14 @@ export default function Projects() {
             {error && <div className="error" style={{ marginBottom: '20px' }}>{error}</div>}
             
             {showCreateForm && (
-                <form onSubmit={handleCreateProject} className="form" style={{ 
-                    marginBottom: '24px', 
-                    padding: '24px', 
-                    background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%)', 
-                    borderRadius: '12px',
-                    border: '2px solid #e2e8f0'
-                }}>
-                    <h4 style={{ marginTop: 0, marginBottom: '16px', color: '#2d3748', fontSize: '1.2rem' }}>✨ Create New Project</h4>
+                    <form onSubmit={handleCreateProject} className="form" style={{ 
+                        marginBottom: '24px', 
+                        padding: '24px', 
+                        background: '#f3f4f6', 
+                        borderRadius: '12px',
+                        border: '2px solid #e5e7eb'
+                    }}>
+                        <h4 style={{ marginTop: 0, marginBottom: '16px', color: '#1f2937', fontSize: '1.2rem' }}>Create New Project</h4>
                     <label>Project Name
                         <input 
                             type="text" 
@@ -199,11 +199,11 @@ export default function Projects() {
                 <form onSubmit={handleEditProject} className="form" style={{ 
                     marginBottom: '24px', 
                     padding: '24px', 
-                    background: 'linear-gradient(135deg, rgba(77, 171, 247, 0.05) 0%, rgba(0, 242, 254, 0.05) 100%)', 
+                    background: '#f0fdf4', 
                     borderRadius: '12px',
-                    border: '2px solid #e2e8f0'
+                    border: '2px solid #dcfce7'
                 }}>
-                    <h4 style={{ marginTop: 0, marginBottom: '16px', color: '#2d3748', fontSize: '1.2rem' }}>✏️ Edit Project</h4>
+                    <h4 style={{ marginTop: 0, marginBottom: '16px', color: '#1f2937', fontSize: '1.2rem' }}>Edit Project</h4>
                     <label>Project Name
                         <input 
                             type="text" 
@@ -258,19 +258,19 @@ export default function Projects() {
                                     to={`/projects/${p.id}`}
                                     style={{ 
                                         padding: '8px 16px',
-                                        background: '#667eea',
+                                        background: '#2563eb',
                                         color: 'white',
                                         borderRadius: '8px',
                                         fontSize: '0.9rem'
                                     }}
                                 >
-                                    👁️ View
+                                    View
                                 </Link>
                                 <button 
                                     onClick={() => startEdit(p)}
                                     style={{ 
                                         padding: '8px 16px', 
-                                        background: '#4facfe', 
+                                        background: '#0891b2', 
                                         color: 'white', 
                                         border: 'none', 
                                         borderRadius: '8px', 
@@ -278,14 +278,14 @@ export default function Projects() {
                                         fontSize: '0.9rem'
                                     }}
                                 >
-                                    ✏️ Edit
+                                    Edit
                                 </button>
                                 <button 
                                     onClick={() => handleDelete(p.id)}
                                     disabled={deleting === p.id}
                                     style={{ 
                                         padding: '8px 16px', 
-                                        background: deleting === p.id ? '#cbd5e0' : '#f5576c', 
+                                        background: deleting === p.id ? '#cbd5e0' : '#dc2626', 
                                         color: 'white', 
                                         border: 'none', 
                                         borderRadius: '8px', 
@@ -293,13 +293,13 @@ export default function Projects() {
                                         fontSize: '0.9rem'
                                     }}
                                 >
-                                    {deleting === p.id ? '⏳ Deleting...' : '🗑️ Delete'}
+                                    {deleting === p.id ? 'Deleting...' : 'Delete'}
                                 </button>
                             </div>
                         </div>
                     </li>
                 ))}
-                {filteredProjects.length === 0 && <li style={{ textAlign: 'center', padding: '40px', color: '#718096', fontSize: '1.1rem' }}>📭 No projects found. Create your first project!</li>}
+                {filteredProjects.length === 0 && <li style={{ textAlign: 'center', padding: '40px', color: '#6b7280', fontSize: '1.1rem' }}>No projects found. Create your first project!</li>}
             </ul>
         </div>
         </>
