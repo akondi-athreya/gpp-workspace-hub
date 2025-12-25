@@ -29,7 +29,6 @@ export default function Register() {
         setError('');
         setSuccess('');
 
-        // Client-side validation
         if (form.adminPassword.length < 8) {
             setError('Password must be at least 8 characters long');
             return;
@@ -73,14 +72,13 @@ export default function Register() {
                     {form.subdomain && <small style={{ color: '#666', fontSize: '0.85em', marginTop: '4px', display: 'block' }}>Your URL: {form.subdomain}.workspacehub.com</small>}
                 </label>
                 <label>
-                                color: '#2563eb', 
+                    Admin Full Name
                     <input name="adminFullName" value={form.adminFullName} onChange={onChange} placeholder="John Doe" required />
-                                fontSize: '1.1em',
-                                padding: '4px 8px',
-                                fontWeight: '600'
+                </label>
+                <label>
                     Admin Email
                     <input type="email" name="adminEmail" value={form.adminEmail} onChange={onChange} placeholder="admin@acme.com" required />
-                            {showConfirmPassword ? 'Hide' : 'Show'}
+                </label>
                 <label>
                     Password (min 8 characters)
                     <div style={{ position: 'relative' }}>
@@ -135,10 +133,11 @@ export default function Register() {
                                 transform: 'translateY(-50%)', 
                                 background: 'transparent', 
                                 border: 'none', 
-                                color: '#3498db', 
+                                color: '#2563eb', 
                                 cursor: 'pointer',
-                                fontSize: '0.85em',
-                                padding: '4px 8px'
+                                fontSize: '1.1em',
+                                padding: '4px 8px',
+                                fontWeight: '600'
                             }}
                         >
                             {showConfirmPassword ? 'Hide' : 'Show'}
