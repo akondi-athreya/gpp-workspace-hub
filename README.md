@@ -42,6 +42,8 @@ A comprehensive multi-tenant SaaS application for project and task management wi
 
 ## System Architecture
 
+See detailed architecture diagram: [System Architecture](docs/images/system-architecture.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Presentation Layer                       │
@@ -75,6 +77,8 @@ A comprehensive multi-tenant SaaS application for project and task management wi
 │  PostgreSQL 16 Database                                    │
 └──────────────────────────────────────────────────────────────┘
 ```
+
+See detailed database ERD: [Database Entity Relationship Diagram](docs/images/database-erd.svg)
 
 ## Installation
 
@@ -151,9 +155,33 @@ JWT_EXPIRES_IN=24h
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/workspace_hub_db
 ```
 
-## API Endpoints
+## Demo Video
 
-Complete API documentation available in `docs/API.md`
+**[📹 Watch Full Demo on YouTube](#)** ← *Update with actual YouTube link after recording*
+
+See detailed recording guide: [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md)
+
+The demo covers:
+- System startup with docker-compose
+- Tenant registration and multi-tenancy
+- User authentication and role-based access
+- Project and task management
+- Multi-tenant data isolation verification
+- Code walkthrough of key components
+
+---
+
+## Documentation
+
+- **Architecture**: [System Architecture Diagram](docs/images/system-architecture.svg)
+- **Database**: [Database ERD](docs/images/database-erd.svg)
+- **API Docs**: [Complete API Reference](docs/API.md)
+- **Research**: [Multi-tenancy Analysis & Tech Stack](docs/research.md)
+- **PRD**: [Product Requirements Document](docs/PRD.md)
+- **Tech Spec**: [Technical Specification](docs/technical-spec.md)
+- **Video Guide**: [Video Recording Checklist](VIDEO_RECORDING_GUIDE.md)
+
+---
 
 ### Authentication (4 endpoints)
 - POST /api/auth/register-tenant - Register new tenant
@@ -254,16 +282,21 @@ changes (JSON) | timestamp | ipAddress
 After running `docker-compose up` or seed script, use these credentials:
 
 ### Super Admin
-- Email: `superadmin@example.com`
-- Password: `SuperAdmin@123`
+- Email: `superadmin@system.com`
+- Password: `Admin@123`
+- Role: `super_admin`
 
-### Demo Tenant Admin
-- Email: `admin@acme.com`
-- Password: `TenantAdmin@123`
+### Demo Tenant (subdomain: demo)
 
-### Demo Tenant User
-- Email: `john@acme.com`
-- Password: `User@123`
+**Tenant Admin**
+- Email: `admin@demo.com`
+- Password: `Demo@123`
+- Role: `tenant_admin`
+
+**Regular Users**
+- Email: `user1@demo.com` / Password: `User@123`
+- Email: `user2@demo.com` / Password: `User@123`
+- Role: `user`
 
 ## File Structure
 

@@ -11,8 +11,11 @@ export default function ProtectedRoute({ children, requiredRole }) {
         return <Navigate to="/login" replace state={{ from: location }} />;
     }
 
-    if (requiredRole && user.role !== requiredRole) {
-        return <div className="card">Forbidden: insufficient permissions</div>;
+    if (requiredRole) {
+        const allowedRoles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+        if (!allowedRoles.includes(user.role)) {
+            return <div className="card">Forbidden: insufficient permissions</div>;
+        }
     }
 
     return children;

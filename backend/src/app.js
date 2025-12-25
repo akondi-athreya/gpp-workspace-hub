@@ -17,7 +17,19 @@ const app = express();
 // CORS configuration
 app.use(
     cors({
-        origin: env.frontendUrl,
+        origin: (origin, callback) => {
+            const allowedOrigins = [
+                'http://localhost:3000',
+                'http://frontend:3000',
+                'http://127.0.0.1:3000'
+            ];
+            
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
         credentials: true,
     })
 );
@@ -25,6 +37,11 @@ app.use(
 // Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Root endpoint
+app.get('/', (req, res) => {
+    return res.status(200).json({ message: 'API is running' });
+});
 
 // Health check endpoint
 app.get('/api/health', async (req, res) => {

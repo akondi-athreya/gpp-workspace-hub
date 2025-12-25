@@ -1,0 +1,108 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="600" y="40" font-size="28" font-weight="bold" text-anchor="middle" fill="#333">
+    Multi-Tenant SaaS Platform - System Architecture
+  </text>
+
+  <!-- Client Layer -->
+  <g id="client">
+    <rect x="50" y="100" width="200" height="120" fill="#E8F4F8" stroke="#0288D1" stroke-width="2" rx="8"/>
+    <text x="150" y="140" font-size="16" font-weight="bold" text-anchor="middle" fill="#0288D1">Client</text>
+    <text x="150" y="165" font-size="13" text-anchor="middle" fill="#333">Web Browser</text>
+    <text x="150" y="190" font-size="12" text-anchor="middle" fill="#666">(Chrome, Firefox, Safari)</text>
+  </g>
+
+  <!-- Frontend Layer -->
+  <g id="frontend">
+    <rect x="50" y="280" width="200" height="140" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" rx="8"/>
+    <text x="150" y="320" font-size="16" font-weight="bold" text-anchor="middle" fill="#7B1FA2">Frontend</text>
+    <text x="150" y="345" font-size="12" text-anchor="middle" fill="#333">React + Vite</text>
+    <text x="150" y="365" font-size="12" text-anchor="middle" fill="#333">Port: 3000</text>
+    <text x="150" y="385" font-size="11" text-anchor="middle" fill="#666">Container: frontend</text>
+    <text x="150" y="405" font-size="11" text-anchor="middle" fill="#666">Protected Routes</text>
+  </g>
+
+  <!-- Arrow Client to Frontend -->
+  <path d="M 150 220 L 150 280" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="170" y="250" font-size="11" fill="#666">HTTP/S</text>
+
+  <!-- Backend Layer -->
+  <g id="backend">
+    <rect x="350" y="280" width="220" height="140" fill="#E8F5E9" stroke="#388E3C" stroke-width="2" rx="8"/>
+    <text x="460" y="320" font-size="16" font-weight="bold" text-anchor="middle" fill="#388E3C">Backend API</text>
+    <text x="460" y="345" font-size="12" text-anchor="middle" fill="#333">Express.js + Prisma</text>
+    <text x="460" y="365" font-size="12" text-anchor="middle" fill="#333">Port: 5000</text>
+    <text x="460" y="385" font-size="11" text-anchor="middle" fill="#666">Container: backend</text>
+    <text x="460" y="405" font-size="11" text-anchor="middle" fill="#666">19 REST Endpoints</text>
+  </g>
+
+  <!-- Arrow Frontend to Backend -->
+  <path d="M 250 350 L 350 350" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="290" y="340" font-size="11" fill="#666">Bearer JWT</text>
+  <text x="290" y="365" font-size="11" fill="#666">JSON/REST</text>
+
+  <!-- Database Layer -->
+  <g id="database">
+    <rect x="700" y="280" width="220" height="140" fill="#FFF3E0" stroke="#E65100" stroke-width="2" rx="8"/>
+    <text x="810" y="320" font-size="16" font-weight="bold" text-anchor="middle" fill="#E65100">Database</text>
+    <text x="810" y="345" font-size="12" text-anchor="middle" fill="#333">PostgreSQL 16</text>
+    <text x="810" y="365" font-size="12" text-anchor="middle" fill="#333">Port: 5432</text>
+    <text x="810" y="385" font-size="11" text-anchor="middle" fill="#666">Container: database</text>
+    <text x="810" y="405" font-size="11" text-anchor="middle" fill="#666">5 Tables + Migrations</text>
+  </g>
+
+  <!-- Arrow Backend to Database -->
+  <path d="M 570 350 L 700 350" stroke="#666" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="620" y="340" font-size="11" fill="#666">Prisma ORM</text>
+  <text x="620" y="365" font-size="11" fill="#666">SQL Queries</text>
+
+  <!-- Docker Environment -->
+  <rect x="30" y="265" width="920" height="175" fill="none" stroke="#FF6F00" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+  <text x="950" y="285" font-size="12" fill="#FF6F00" font-weight="bold">Docker Network</text>
+
+  <!-- Key Features Section -->
+  <g id="features">
+    <text x="50" y="520" font-size="16" font-weight="bold" fill="#333">Key Features & Security:</text>
+    
+    <!-- Feature boxes -->
+    <rect x="50" y="540" width="280" height="220" fill="#F5F5F5" stroke="#999" stroke-width="1" rx="5"/>
+    <text x="70" y="560" font-size="13" font-weight="bold" fill="#333">Authentication &amp; Authorization:</text>
+    <text x="70" y="585" font-size="11" fill="#333">• JWT-based (24h expiry)</text>
+    <text x="70" y="605" font-size="11" fill="#333">• 3 User Roles:</text>
+    <text x="85" y="625" font-size="11" fill="#333">- Super Admin (all tenants)</text>
+    <text x="85" y="645" font-size="11" fill="#333">- Tenant Admin (own tenant)</text>
+    <text x="85" y="665" font-size="11" fill="#333">- User (limited access)</text>
+    <text x="70" y="690" font-size="11" fill="#333">• Token in Authorization header</text>
+    <text x="70" y="710" font-size="11" fill="#333">• Role-based API access control</text>
+    <text x="70" y="730" font-size="11" fill="#333">• Auto-logout on token expiry</text>
+
+    <rect x="360" y="540" width="280" height="220" fill="#F5F5F5" stroke="#999" stroke-width="1" rx="5"/>
+    <text x="380" y="560" font-size="13" font-weight="bold" fill="#333">Data Isolation:</text>
+    <text x="380" y="585" font-size="11" fill="#333">• All queries filtered by tenant_id</text>
+    <text x="380" y="605" font-size="11" fill="#333">• tenant_id in JWT token</text>
+    <text x="380" y="625" font-size="11" fill="#333">• Composite unique: (tenant_id, email)</text>
+    <text x="380" y="645" font-size="11" fill="#333">• Super admin: tenant_id = NULL</text>
+    <text x="380" y="665" font-size="11" fill="#333">• Tenant isolation middleware</text>
+    <text x="380" y="685" font-size="11" fill="#333">• Separate subscriptions per tenant</text>
+    <text x="380" y="705" font-size="11" fill="#333">• Cannot access other tenant data</text>
+    <text x="380" y="725" font-size="11" fill="#333">• Foreign key constraints</text>
+
+    <rect x="670" y="540" width="280" height="220" fill="#F5F5F5" stroke="#999" stroke-width="1" rx="5"/>
+    <text x="690" y="560" font-size="13" font-weight="bold" fill="#333">Audit &amp; Compliance:</text>
+    <text x="690" y="585" font-size="11" fill="#333">• Complete audit log</text>
+    <text x="690" y="605" font-size="11" fill="#333">• Track all CRUD operations</text>
+    <text x="690" y="625" font-size="11" fill="#333">• User ID &amp; IP address logged</text>
+    <text x="690" y="645" font-size="11" fill="#333">• Subscription enforcement</text>
+    <text x="690" y="665" font-size="11" fill="#333">• Max users/projects limits</text>
+    <text x="690" y="685" font-size="11" fill="#333">• Cascade deletes on removals</text>
+    <text x="690" y="705" font-size="11" fill="#333">• Password hashing (bcrypt)</text>
+    <text x="690" y="725" font-size="11" fill="#333">• CORS configured properly</text>
+  </g>
+
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+</svg>
