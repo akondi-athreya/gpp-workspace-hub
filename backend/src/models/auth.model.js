@@ -17,16 +17,7 @@ const registerTenant = async ({ tenantName, subdomain, adminEmail, adminPassword
     throw error;
   }
 
-  // Check if admin email already exists in any tenant
-  const existingUser = await prisma.user.findFirst({
-    where: { email: adminEmail },
-  });
 
-  if (existingUser) {
-    const error = new Error('Email already exists');
-    error.statusCode = 409;
-    throw error;
-  }
 
   // Hash password
   const passwordHash = await hashPassword(adminPassword);
