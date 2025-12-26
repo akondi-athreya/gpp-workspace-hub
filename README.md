@@ -70,6 +70,10 @@
 
 The system follows a **layered architecture pattern** with clear separation of concerns:
 
+<div align="center">
+  <img src="docs/images/system-architecture.svg" alt="System Architecture" width="800">
+</div>
+
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │              💻 Presentation Layer                             │
@@ -109,6 +113,10 @@ The system follows a **layered architecture pattern** with clear separation of c
 ## 📊 Database Schema
 
 The database uses **5 main tables** with carefully designed relationships and constraints for multi-tenant isolation and role-based access control.
+
+<div align="center">
+  <img src="docs/images/database-erd.svg" alt="Database ERD" width="800">
+</div>
 
 ### Tables Overview
 

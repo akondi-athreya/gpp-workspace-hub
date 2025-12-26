@@ -62,7 +62,7 @@
 
   <!-- Key Features Section -->
   <g id="features">
-    <text x="50" y="520" font-size="16" font-weight="bold" fill="#333">Key Features & Security:</text>
+    <text x="50" y="520" font-size="16" font-weight="bold" fill="#333">Key Features &amp; Security:</text>
     
     <!-- Feature boxes -->
     <rect x="50" y="540" width="280" height="220" fill="#F5F5F5" stroke="#999" stroke-width="1" rx="5"/>
