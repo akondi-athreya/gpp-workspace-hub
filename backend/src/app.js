@@ -18,13 +18,20 @@ const app = express();
 app.use(
     cors({
         origin: (origin, callback) => {
+            const normalize = (value) => (value ? value.replace(/\/$/, '') : value);
             const allowedOrigins = [
+                env.frontendUrl,
+                env.frontendUrl?.replace(/^http:\/\//, 'https://'),
                 'http://localhost:3000',
+                'http://127.0.0.1:3000',
                 'http://frontend:3000',
-                'http://127.0.0.1:3000'
-            ];
-            
-            if (!origin || allowedOrigins.includes(origin)) {
+            ]
+                .filter(Boolean)
+                .map(normalize);
+
+            const normalizedOrigin = normalize(origin);
+
+            if (!normalizedOrigin || allowedOrigins.includes(normalizedOrigin)) {
                 callback(null, true);
             } else {
                 callback(new Error('Not allowed by CORS'));
