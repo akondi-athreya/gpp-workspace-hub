@@ -67,7 +67,8 @@
 ## 🏗️ System Architecture
 
 ### Architecture Overview
-<img src="docs/images/system-architecture.svg" alt="System Architecture Diagram" width="100%">
+
+The system follows a **layered architecture pattern** with clear separation of concerns:
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
@@ -103,12 +104,17 @@
 └───────────────────────────────────────────────────────────────┘
 ```
 
+**📊 Detailed Architecture Diagram:** See [docs/images/system-architecture.svg](./docs/images/system-architecture.svg)
+
 ---
 
 ## 📊 Database Schema
 
 ### Entity Relationship Diagram (ERD)
-<img src="docs/images/database-erd.svg" alt="Database ERD" width="100%">
+
+The database uses **5 main tables** with carefully designed relationships and constraints:
+
+**📋 Detailed ERD Diagram:** See [docs/images/database-erd.svg](./docs/images/database-erd.svg)
 
 ### Tables Overview
 
@@ -258,11 +264,11 @@ DATABASE_URL=postgresql://postgres:postgres@localhost:5432/workspace_hub_db
 ---
 
 ## 📹 Demo & Documentation
-
+<!-- 
 ### 🎬 Video Demo
 **[📹 Watch Full Demo on YouTube](#)** ← *Update with actual YouTube link after recording*
 
-See detailed guide: [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md)
+See detailed guide: [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md) -->
 
 **The demo covers:**
 - ✅ System startup with docker-compose
@@ -282,7 +288,7 @@ See detailed guide: [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md)
 | 📝 [PRD.md](docs/PRD.md) | Product requirements document |
 | 🔍 [research.md](docs/research.md) | Multi-tenancy analysis & tech stack |
 | 🛠️ [technical-spec.md](docs/technical-spec.md) | Technical specifications |
-| 📹 [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md) | Video recording checklist |
+<!-- | 📹 [VIDEO_RECORDING_GUIDE.md](VIDEO_RECORDING_GUIDE.md) | Video recording checklist | -->
 
 ---
 
