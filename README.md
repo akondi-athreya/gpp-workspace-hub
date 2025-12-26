@@ -104,17 +104,11 @@ The system follows a **layered architecture pattern** with clear separation of c
 └───────────────────────────────────────────────────────────────┘
 ```
 
-**📊 Detailed Architecture Diagram:** See [docs/images/system-architecture.svg](./docs/images/system-architecture.svg)
-
 ---
 
 ## 📊 Database Schema
 
-### Entity Relationship Diagram (ERD)
-
-The database uses **5 main tables** with carefully designed relationships and constraints:
-
-**📋 Detailed ERD Diagram:** See [docs/images/database-erd.svg](./docs/images/database-erd.svg)
+The database uses **5 main tables** with carefully designed relationships and constraints for multi-tenant isolation and role-based access control.
 
 ### Tables Overview
 
