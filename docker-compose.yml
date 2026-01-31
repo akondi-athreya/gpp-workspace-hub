@@ -45,7 +45,7 @@ services:
     build: ./frontend
     container_name: frontend
     environment:
-      VITE_API_URL: http://backend:5000/api
+      VITE_API_URL: http://localhost:5000/api
     depends_on:
       backend:
         condition: service_healthy

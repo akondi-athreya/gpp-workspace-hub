@@ -1,14 +1,17 @@
-# Frontend Dockerfile
-FROM node:20-bookworm-slim as build
+# Frontend Dockerfile - Development Mode for Dynamic API URL
+FROM node:20-bookworm-slim
+
 WORKDIR /app
+
+# Copy package files
 COPY package.json package-lock.json ./
 RUN npm ci
-COPY . .
-RUN npm run build
 
-FROM node:20-bookworm-slim
-WORKDIR /app
-RUN npm install -g serve
-COPY --from=build /app/dist ./dist
+# Copy source code
+COPY . .
+
+# Expose port
 EXPOSE 3000
-CMD ["serve", "-s", "dist", "-l", "3000"]
+
+# Run development server (allows dynamic env vars)
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
