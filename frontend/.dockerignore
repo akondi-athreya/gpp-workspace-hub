@@ -1,0 +1,14 @@
+# .dockerignore for frontend
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+README.md
+*.md
+.vscode
+.idea
+coverage
+dist
+build
+.DS_Store
