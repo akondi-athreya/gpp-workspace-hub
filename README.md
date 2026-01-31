@@ -4,6 +4,7 @@
 
 <div align="center">
   <p>
+    <a href="#-quick-start"><strong>Quick Start</strong></a> •
     <a href="#-features"><strong>Features</strong></a> •
     <a href="#-technology-stack"><strong>Tech Stack</strong></a> •
     <a href="#-installation"><strong>Installation</strong></a> •
@@ -11,6 +12,41 @@
     <a href="#-api-endpoints"><strong>API Reference</strong></a>
   </p>
 </div>
+
+---
+
+## 🚀 Quick Start
+
+**Get started in 2 minutes:**
+
+```bash
+# 1. Clone the repository
+git clone <repository-url>
+cd workspace-hub
+
+# 2. Start all services with Docker
+docker-compose up -d
+
+# 3. Wait for services to initialize (30-60 seconds first time)
+# Check status: docker-compose ps
+
+# 4. Open your browser
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:5000
+# Health Check: http://localhost:5000/api/health
+```
+
+**Default Login Credentials:**
+- **Super Admin:** `superadmin@system.com` / `Admin@123`
+- **Tenant Admin:** `admin@demo.com` / `Demo@123` (subdomain: `demo`)
+- **User:** `user1@demo.com` / `User@123` (subdomain: `demo`)
+
+**Helper Scripts:**
+- `./start.sh` - Quick start with automatic browser opening
+- `./stop.sh` - Stop all services
+- `./test-deployment.sh` - Run automated deployment tests
+
+**Need help?** See [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ---
 
